@@ -1,0 +1,8 @@
+# IAQF 2026 - 数据处理与 EDA
+pandas>=2.0
+numpy>=1.24
+matplotlib>=3.7
+pyarrow>=12.0  # for parquet
+scikit-learn>=1.3
+joblib>=1.3
+statsmodels>=0.14  # VAR, IRF

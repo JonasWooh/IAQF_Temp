@@ -1,0 +1,74 @@
+# === Global Configurations ===
+
+# --- Path Configurations ---
+project:
+  root: null
+
+paths:
+  data_root: "data/data_flatfiles"
+  gas_fee: "data/gas_fee"
+  data_root_alt: "data_flatfiles"
+  output_dir: "output_project_layer"
+  processed_1min: "output/processed_1min"
+  master_feature_file: "master_features_1min.parquet"
+  cmlsi_scaler: "cmlsi_scaler.pkl"
+  cmlsi_loadings: "cmlsi_loadings.pkl"
+  cmlsi_meta: "cmlsi_meta.json"
+  figures_dir: "figures"
+
+# --- Datetime Range ---
+dates:
+  start: "2023-03-01"
+  end: "2023-03-21"
+  eda_usdc_end: "2023-03-21"
+
+# --- Datetime Phases Partition ---
+phases:
+  normal:
+    start: "2023-03-01"
+    end: "2023-03-09"
+  stressed:
+    start: "2023-03-10"
+    end: "2023-03-13"
+  recovery:
+    start: "2023-03-14"
+    end: "2023-03-21"
+
+# --- Basis Conversion & Rolling Window Size & Forward Filling ---
+thresholds:
+  depeg_bps_unit: 10000  # 1% = 10000 bps
+  spread_ma_window: 60
+  ffill_limit: 5
+
+# --- Visulization Parameters ---
+visualization:
+  figure_dpi: 150
+  raw_data_alpha: 0.3
+
+# --- Data ---
+exchanges:
+  usdc_usd:
+    exchange: "BINANCEUS"
+    pair: "USDC_USD"
+  btc:
+    exchanges: ["BINANCEUS", "COINBASE"]
+    pairs: ["BTC_USD", "BTC_USDC", "BTC_USDT"]
+
+# --- Var(VarX) Model Parameters ---
+var:
+  # Endogeneous Variables: Order matters as we used Cholesky Decomposition Later for analysis 
+  cols: ["Depeg_bps", "CMLSI", "Basis_bps", "Premium_bps"]
+  # -- Gas exog Mode：level（Raw Gwei）| log_level | dummy --
+  # Raw Gwei
+  gas_exog_mode: "level"  # If ADF test is passed, we use Raw Gwei
+  gas_adf_signif: 0.10  # ADF Significance Threshold
+  # Dummy Gwei
+  gas_dummy_threshold_gwei: null
+  gas_dummy_threshold_percentile: 95
+  # -- IRF Parameters --
+  irf_periods: 60 # horizon
+  irf_ci_repl: 500  # IRF C.I. Bootstrap reps
+  irf_ci_repl_triple: 150 
+  irf_ci_seed: 42 # random seed
+  irf_ci_signif: 0.05 # IRF C.I. Significance Level
+  adf_signif: 0.05 # general ADF-testing Significance Level
