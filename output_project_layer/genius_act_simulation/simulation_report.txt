@@ -1,0 +1,4 @@
+GENIUS Act Counterfactual Simulation
+A: Magnitude scaling (c=1,0.75,0.5,0.2)
+B: Tail truncation (95% winsorize)
+C: Duration damp (τ=5,10,20)

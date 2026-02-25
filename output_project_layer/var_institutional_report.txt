@@ -1,0 +1,26 @@
+======================================================================
+VARX Institutional Friction: Gas vs Gas+Weekend vs Gas+Pause
+IAQF 2026 - Regime: crisis
+======================================================================
+
+[Dummy Overlap] corr(is_weekend, conversion_pause)
+  corr = 0.7728  |  n = 5,660  |  0.60–0.90: use with caution
+
+[Models]
+  Baseline:     exog = gas (base_fee_gwei)
+  Main:         exog = [gas, is_weekend]
+  Robustness:   exog = [gas, conversion_pause]  (pause: 2023-03-10 21:00–03-13 09:00 ET)
+
+[Depeg → Premium IRF Peak |IRF|]
+  Baseline:   0.2177 bps
+  Main:       0.2237 bps
+  Robustness: 0.2205 bps
+
+[Premium FEVD from Depeg (final horizon)]
+  Baseline:   0.79%
+  Main:       0.85%
+  Robustness: 0.81%
+
+[Interpretation]
+  Cost friction (gas) vs institutional friction (weekend/pause) marginal contribution.
+  If weekend/pause significant: non-price institutional constraints matter.

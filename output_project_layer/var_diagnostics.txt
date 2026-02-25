@@ -1,0 +1,23 @@
+======================================================================
+VAR Model Diagnostics (All Regimes)
+IAQF 2026 - Project Layer
+======================================================================
+
+[Normal (Mar 1–9)] Stability: ✓ Yes
+  Depeg_bps: p=1.0000 ✓
+  CMLSI: p=1.0000 ✓
+  Basis_bps: p=1.0000 ✓
+  Premium_bps: p=0.9997 ✓
+
+[Crisis (Mar 10–13)] Stability: ✓ Yes
+  Differenced (ADF non-stationary): Basis_bps, Depeg_bps
+  Depeg_bps: p=0.9955 ✓
+  CMLSI: p=1.0000 ✓
+  Basis_bps: p=1.0000 ✓
+  Premium_bps: p=1.0000 ✓
+
+[Recovery (Mar 14–21)] Stability: ✓ Yes
+  Depeg_bps: p=1.0000 ✓
+  CMLSI: p=0.9999 ✓
+  Basis_bps: p=1.0000 ✓
+  Premium_bps: p=1.0000 ✓

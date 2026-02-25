@@ -1,0 +1,31 @@
+======================================================================
+CMLSI Structure Change Tests
+======================================================================
+
+[1] Covariance Frobenius Norm ||Σ_N - Σ_C||_F
+  Frobenius norm: 374.40986301007064
+  n_normal=12959, n_crisis=5760
+  → Large value indicates regime shift.
+
+[2] Eigenvalue Ratio (Crisis / Normal)
+  PC1 EVR Normal: 0.4694
+  PC1 EVR Crisis: 0.4296
+  Eigenvalue ratios: [0.9152302431868898, 1.021633893695826, 0.9977252923543268, 1.2695830101456254, 1.1141051611898403, 1.3163399339561688, 1.3897238928578222]
+
+[3] PCA Subspace Angle (degrees)
+  PC1 angle: 14.54°
+  All PCs: [14.542105676773305, 11.743255334464166, 89.11200278442035]
+  → Large angle indicates principal direction rotated.
+
+[4] RMT (Marchenko-Pastur) Signal vs Noise
+  N=7, T=12,959, q=N/T=0.000540
+  λ_max^noise = σ²(1+√q)² = 1.0470
+  Signal PCs (λ > λ_max^noise): 2
+
+  PC1: λ=3.286  > 1.0470  → 信号
+  PC2: λ=1.704  > 1.0470  → 信号
+  PC3: λ=1.001  ≤ 1.0470  → 噪声
+  PC4: λ=0.683  ≤ 1.0470  → 噪声
+  PC5: λ=0.215  ≤ 1.0470  → 噪声
+  PC6: λ=0.103  ≤ 1.0470  → 噪声
+  PC7: λ=0.009  ≤ 1.0470  → 噪声

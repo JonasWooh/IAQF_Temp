@@ -1,0 +1,71 @@
+======================================================================
+VAR Hypothesis Tests Supplement (Transmission / Regime / Slicing)
+IAQF 2026 - Project Layer
+======================================================================
+
+[A] Transmission Path (Crisis): Depeg -> CMLSI -> Basis/Premium (heuristic evidence)
+  H1 Depeg->CMLSI: peak=-0.0225 @ t=14, |peak|=0.0225, zero-excluded=True
+  H2 cmlsi_to_basis_bps: peak=0.3609 @ t=0, |peak|=0.3609, zero-excluded=True
+  H2 cmlsi_to_premium_bps: peak=-0.2630 @ t=19, |peak|=0.2630, zero-excluded=True
+  With vs Without CMLSI [depeg_to_basis]: Δpeak_abs(reduced-full)/full=-0.0041, Δcum_abs=-0.0031, corr=1.0000
+  With vs Without CMLSI [depeg_to_premium]: Δpeak_abs(reduced-full)/full=-0.0198, Δcum_abs=0.0493, corr=0.9917
+
+  Heuristic path assessment: H1=True, H2a=True, H2b=False
+  Note: Heuristic evidence only; not a formal causal mediation test.
+
+[B] Regime Differences (Quantified): Depeg response by regime
+  CMLSI:
+    normal   |peak|=0.0181 @t=6 half-life=2 cum_abs=0.6976 zero-excl-peak=True
+    crisis   |peak|=0.0225 @t=14 half-life=1 cum_abs=0.2506 zero-excl-peak=True
+    recovery |peak|=0.0473 @t=17 half-life=2 cum_abs=1.4914 zero-excl-peak=True
+    crisis_vs_normal_at_crisis_peak: horizon=14, CI overlap=False, peak ratio=1.2397, cum_abs ratio=0.3592
+    crisis_vs_recovery_at_crisis_peak: horizon=14, CI overlap=False, peak ratio=0.4753, cum_abs ratio=0.1680
+  Basis_bps:
+    normal   |peak|=0.0286 @t=11 half-life=1 cum_abs=0.4630 zero-excl-peak=True
+    crisis   |peak|=8.3543 @t=60 half-life=N/A cum_abs=449.2709 zero-excl-peak=True
+    recovery |peak|=0.2248 @t=60 half-life=N/A cum_abs=10.1202 zero-excl-peak=True
+    crisis_vs_normal_at_crisis_peak: horizon=60, CI overlap=False, peak ratio=291.9371, cum_abs ratio=970.2535
+    crisis_vs_recovery_at_crisis_peak: horizon=60, CI overlap=False, peak ratio=37.1621, cum_abs ratio=44.3937
+  Premium_bps:
+    normal   |peak|=0.0623 @t=13 half-life=5 cum_abs=1.2406 zero-excl-peak=True
+    crisis   |peak|=0.2221 @t=13 half-life=22 cum_abs=6.9980 zero-excl-peak=True
+    recovery |peak|=0.1821 @t=18 half-life=N/A cum_abs=6.4314 zero-excl-peak=True
+    crisis_vs_normal_at_crisis_peak: horizon=13, CI overlap=False, peak ratio=3.5634, cum_abs ratio=5.6408
+    crisis_vs_recovery_at_crisis_peak: horizon=13, CI overlap=False, peak ratio=1.2195, cum_abs ratio=1.0881
+
+[C] Why Regime Slicing (Full-sample VAR vs regime VAR)
+  CMLSI full-sample: |peak|=0.0145 @t=19 cum_abs=0.4156
+    vs normal: corr=0.0657, peak attenuation(full vs normal)=0.1994
+    vs crisis: corr=0.7687, peak attenuation(full vs crisis)=0.3542
+    vs recovery: corr=0.4628, peak attenuation(full vs recovery)=0.6931
+  Basis_bps full-sample: |peak|=4.8961 @t=57 cum_abs=254.9258
+    vs normal: corr=0.6411, peak attenuation(full vs normal)=-170.0918
+    vs crisis: corr=0.9935, peak attenuation(full vs crisis)=0.4139
+    vs recovery: corr=0.6968, peak attenuation(full vs recovery)=-20.7791
+  Premium_bps full-sample: |peak|=0.1186 @t=13 cum_abs=5.6576
+    vs normal: corr=0.2274, peak attenuation(full vs normal)=-0.9027
+    vs crisis: corr=0.4644, peak attenuation(full vs crisis)=0.4660
+    vs recovery: corr=0.3630, peak attenuation(full vs recovery)=0.3488
+  Endog covariance shift (Frobenius): fro_norm_vs_crisis=164785.4140, fro_norm_vs_recovery=138.3724
+
+[D] Cholesky Ordering Sensitivity (Crisis, lightweight robustness)
+  baseline: order=['Depeg_bps', 'CMLSI', 'Basis_bps', 'Premium_bps']
+    depeg_to_cmlsi: |peak|=0.0225 @t=14
+    depeg_to_basis_bps: |peak|=8.3543 @t=60
+    depeg_to_premium_bps: |peak|=0.2221 @t=13
+  alt_cmlsi_before_depeg: order=['CMLSI', 'Depeg_bps', 'Basis_bps', 'Premium_bps']
+    depeg_to_cmlsi: |peak|=0.0228 @t=14
+    depeg_to_basis_bps: |peak|=8.3543 @t=60
+    depeg_to_premium_bps: |peak|=0.2222 @t=13
+  alt_basis_before_cmlsi: order=['Depeg_bps', 'Basis_bps', 'CMLSI', 'Premium_bps']
+    depeg_to_cmlsi: |peak|=0.0225 @t=14
+    depeg_to_basis_bps: |peak|=8.3543 @t=60
+    depeg_to_premium_bps: |peak|=0.2221 @t=13
+
+[Interpretation Guide]
+  - 若 Crisis 的 |peak|/cum_abs/half-life 明显大于 Normal/Recovery，支持“危机期传导更强/更持久”。
+  - 若去掉 CMLSI 后 Depeg 响应显著改变，说明 CMLSI 至少是重要传导通道（启发式证据）。
+  - 若 full-sample 与 Crisis IRF 差异显著，说明混合估计会掩盖危机机制，regime 切片有必要。
+  - Cholesky 顺序敏感性若很高，应在论文中明确作为识别假设与局限。
+
+======================================================================

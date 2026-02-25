@@ -1,0 +1,27 @@
+{
+  "regime": "crisis",
+  "differenced_cols": [
+    "Depeg_bps",
+    "Basis_bps"
+  ],
+  "irf_stable_peaks": {
+    "depeg_cmlsi": 0.022457816809158256,
+    "depeg_basis": 8.354300950118361,
+    "depeg_premium": 0.22207488520781982
+  },
+  "irf_adaptive_peaks": {
+    "depeg_cmlsi": 0.01712188226782221,
+    "depeg_basis": 8.384993303752298,
+    "depeg_premium": 0.22765152441515818
+  },
+  "fevd_stable_final": {
+    "cmlsi": 0.000781715161307045,
+    "basis": 0.056563365152423016,
+    "premium": 0.00910950458729958
+  },
+  "fevd_adaptive_final": {
+    "cmlsi": 0.0010944552912166678,
+    "basis": 0.056669417818088465,
+    "premium": 0.010219536667125351
+  }
+}

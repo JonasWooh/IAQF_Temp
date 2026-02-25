@@ -1,0 +1,20 @@
+======================================================================
+CMLSI Robustness: Economic Interpretation
+======================================================================
+
+Step 1 — Structure Change:
+  • Frobenius norm ||Σ_N - Σ_C||_F: Large → regime shift exists.
+  • Eigenvalue ratio: Crisis/Normal ≠ 1 → variance structure changed.
+  • Subspace angle: Large θ → principal direction rotated.
+
+Step 2 — Stable vs Adaptive CMLSI:
+  • Stable CMLSI: Normal-period fit, measures 'shock magnitude' (OOS).
+  • Adaptive CMLSI: Rolling PCA, measures 'structural collapse' (regime-adaptive).
+
+Step 3 — VAR Comparison:
+  • If IRF/FEVD differ: CMLSI construction matters for传导结论.
+  • If similar: Robust to index construction.
+
+  IRF Peak |Depeg→Premium|:
+    Stable:   0.2221 bps
+    Adaptive: 0.2277 bps

@@ -1,0 +1,652 @@
+{
+  "meta": {
+    "periods": 60,
+    "default_var_cols": [
+      "Depeg_bps",
+      "CMLSI",
+      "Basis_bps",
+      "Premium_bps"
+    ],
+    "reduced_var_cols": [
+      "Depeg_bps",
+      "Basis_bps",
+      "Premium_bps"
+    ],
+    "regimes": [
+      "normal",
+      "crisis",
+      "recovery"
+    ],
+    "heuristic_threshold_relative_change": 0.15
+  },
+  "transmission_path": {
+    "crisis_full_model_cols": [
+      "Depeg_bps",
+      "CMLSI",
+      "Basis_bps",
+      "Premium_bps"
+    ],
+    "crisis_reduced_model_cols": [
+      "Depeg_bps",
+      "Basis_bps",
+      "Premium_bps"
+    ],
+    "irf_metrics": {
+      "depeg_to_cmlsi": {
+        "peak_idx": 14,
+        "peak_val": -0.022457816809158256,
+        "peak_abs": 0.022457816809158256,
+        "cum_signed": -0.058391197387386955,
+        "cum_abs": 0.25060695949697104,
+        "half_life_from_peak": 1,
+        "peak_ci": [
+          -0.0011943051719446058,
+          -0.0011943051719446058
+        ],
+        "zero_excluded_at_peak": true
+      },
+      "cmlsi_to_basis_bps": {
+        "peak_idx": 0,
+        "peak_val": 0.3609349576794354,
+        "peak_abs": 0.3609349576794354,
+        "cum_signed": 0.5901224088129197,
+        "cum_abs": 4.951659243787913,
+        "half_life_from_peak": 1,
+        "peak_ci": [
+          0.4636021437451794,
+          0.4636021437451794
+        ],
+        "zero_excluded_at_peak": true
+      },
+      "cmlsi_to_premium_bps": {
+        "peak_idx": 19,
+        "peak_val": -0.262970289183742,
+        "peak_abs": 0.262970289183742,
+        "cum_signed": -9.468055223712966,
+        "cum_abs": 11.554800044998801,
+        "half_life_from_peak": null,
+        "peak_ci": [
+          -0.30061993257765646,
+          -0.30061993257765646
+        ],
+        "zero_excluded_at_peak": true
+      },
+      "heuristic_path_assessment": {
+        "criteria": [
+          "H1: Depeg->CMLSI peak CI excludes zero",
+          "H2a: CMLSI->Basis/Premium peak CI excludes zero (at least one response)",
+          "H2b: Removing CMLSI changes Depeg response materially (|Δpeak|>15% or |Δcum|>15%)"
+        ],
+        "h1_supported": true,
+        "h2a_supported_any": true,
+        "h2b_supported_any": false,
+        "note": "Heuristic evidence only; not a formal causal mediation test."
+      }
+    },
+    "with_vs_without_cmlsi": {
+      "depeg_to_basis": {
+        "full_with_cmlsi": {
+          "peak_idx": 60,
+          "peak_val": -8.354300950118361,
+          "peak_abs": 8.354300950118361,
+          "cum_signed": -449.270949002944,
+          "cum_abs": 449.270949002944,
+          "half_life_from_peak": null
+        },
+        "reduced_no_cmlsi": {
+          "peak_idx": 60,
+          "peak_val": -8.320143666517163,
+          "peak_abs": 8.320143666517163,
+          "cum_signed": -447.8579631082303,
+          "cum_abs": 447.8579631082303,
+          "half_life_from_peak": null
+        },
+        "peak_abs_relative_change_reduced_vs_full": -0.004088586681895167,
+        "cum_abs_relative_change_reduced_vs_full": -0.0031450640150437158,
+        "shape_corr_full_vs_reduced": 0.9999951825952582
+      },
+      "depeg_to_premium": {
+        "full_with_cmlsi": {
+          "peak_idx": 13,
+          "peak_val": -0.22207488520781982,
+          "peak_abs": 0.22207488520781982,
+          "cum_signed": -6.997978870137605,
+          "cum_abs": 6.997978870137605,
+          "half_life_from_peak": 22
+        },
+        "reduced_no_cmlsi": {
+          "peak_idx": 13,
+          "peak_val": -0.21766700024959942,
+          "peak_abs": 0.21766700024959942,
+          "cum_signed": -7.342927756968775,
+          "cum_abs": 7.342927756968775,
+          "half_life_from_peak": 25
+        },
+        "peak_abs_relative_change_reduced_vs_full": -0.019848642290619452,
+        "cum_abs_relative_change_reduced_vs_full": 0.04929264480965587,
+        "shape_corr_full_vs_reduced": 0.9917479223213521
+      }
+    },
+    "fevd_final_horizon": {
+      "Basis_bps": {
+        "from_depeg_final_pct": 5.656336515242302,
+        "from_cmlsi_final_pct": 0.5098501230912009
+      },
+      "Premium_bps": {
+        "from_depeg_final_pct": 0.910950458729958,
+        "from_cmlsi_final_pct": 2.6139452878935447
+      }
+    }
+  },
+  "regime_quantitative_comparison": {
+    "CMLSI": {
+      "per_regime": {
+        "normal": {
+          "peak_idx": 6,
+          "peak_val": 0.018115327677870646,
+          "peak_abs": 0.018115327677870646,
+          "cum_signed": 0.6975841865232995,
+          "cum_abs": 0.6975841865232995,
+          "half_life_from_peak": 2,
+          "peak_ci": [
+            -0.0007398643166066396,
+            -0.0007398643166066396
+          ],
+          "zero_excluded_at_peak": true
+        },
+        "crisis": {
+          "peak_idx": 14,
+          "peak_val": -0.022457816809158256,
+          "peak_abs": 0.022457816809158256,
+          "cum_signed": -0.058391197387386955,
+          "cum_abs": 0.25060695949697104,
+          "half_life_from_peak": 1,
+          "peak_ci": [
+            -0.0011943051719446058,
+            -0.0011943051719446058
+          ],
+          "zero_excluded_at_peak": true
+        },
+        "recovery": {
+          "peak_idx": 17,
+          "peak_val": 0.04725368086892748,
+          "peak_abs": 0.04725368086892748,
+          "cum_signed": 1.354277947024074,
+          "cum_abs": 1.4913733267469882,
+          "half_life_from_peak": 2,
+          "peak_ci": [
+            0.06665704719569085,
+            0.06665704719569085
+          ],
+          "zero_excluded_at_peak": true
+        }
+      },
+      "pairwise_checks": {
+        "crisis_vs_normal_at_crisis_peak": {
+          "horizon": 14,
+          "crisis_ci": [
+            -0.0011943051719446058,
+            -0.0011943051719446058
+          ],
+          "other_ci": [
+            -0.010516195505412853,
+            -0.010516195505412853
+          ],
+          "ci_overlap": false,
+          "peak_abs_ratio_crisis_over_other": 1.239713529255798,
+          "cum_abs_ratio_crisis_over_other": 0.3592497713372416
+        },
+        "crisis_vs_recovery_at_crisis_peak": {
+          "horizon": 14,
+          "crisis_ci": [
+            -0.0011943051719446058,
+            -0.0011943051719446058
+          ],
+          "other_ci": [
+            0.034059649309560854,
+            0.034059649309560854
+          ],
+          "ci_overlap": false,
+          "peak_abs_ratio_crisis_over_other": 0.47526068649449493,
+          "cum_abs_ratio_crisis_over_other": 0.16803771061374664
+        }
+      }
+    },
+    "Basis_bps": {
+      "per_regime": {
+        "normal": {
+          "peak_idx": 11,
+          "peak_val": -0.028616783071487288,
+          "peak_abs": 0.028616783071487288,
+          "cum_signed": -0.19668337952419215,
+          "cum_abs": 0.46304492210621245,
+          "half_life_from_peak": 1,
+          "peak_ci": [
+            -0.025708075641999246,
+            -0.025708075641999246
+          ],
+          "zero_excluded_at_peak": true
+        },
+        "crisis": {
+          "peak_idx": 60,
+          "peak_val": -8.354300950118361,
+          "peak_abs": 8.354300950118361,
+          "cum_signed": -449.270949002944,
+          "cum_abs": 449.270949002944,
+          "half_life_from_peak": null,
+          "peak_ci": [
+            -9.582122681331322,
+            -9.582122681331322
+          ],
+          "zero_excluded_at_peak": true
+        },
+        "recovery": {
+          "peak_idx": 60,
+          "peak_val": -0.22480707466878797,
+          "peak_abs": 0.22480707466878797,
+          "cum_signed": -10.12016034383062,
+          "cum_abs": 10.12016034383062,
+          "half_life_from_peak": null,
+          "peak_ci": [
+            -0.18720847322297765,
+            -0.18720847322297765
+          ],
+          "zero_excluded_at_peak": true
+        }
+      },
+      "pairwise_checks": {
+        "crisis_vs_normal_at_crisis_peak": {
+          "horizon": 60,
+          "crisis_ci": [
+            -9.582122681331322,
+            -9.582122681331322
+          ],
+          "other_ci": [
+            -0.01147419559549545,
+            -0.01147419559549545
+          ],
+          "ci_overlap": false,
+          "peak_abs_ratio_crisis_over_other": 291.9371100954488,
+          "cum_abs_ratio_crisis_over_other": 970.2534841746758
+        },
+        "crisis_vs_recovery_at_crisis_peak": {
+          "horizon": 60,
+          "crisis_ci": [
+            -9.582122681331322,
+            -9.582122681331322
+          ],
+          "other_ci": [
+            -0.18720847322297765,
+            -0.18720847322297765
+          ],
+          "ci_overlap": false,
+          "peak_abs_ratio_crisis_over_other": 37.162090928085306,
+          "cum_abs_ratio_crisis_over_other": 44.39365916537334
+        }
+      }
+    },
+    "Premium_bps": {
+      "per_regime": {
+        "normal": {
+          "peak_idx": 13,
+          "peak_val": 0.06232158853549042,
+          "peak_abs": 0.06232158853549042,
+          "cum_signed": 0.21581601056730387,
+          "cum_abs": 1.2405908881136527,
+          "half_life_from_peak": 5,
+          "peak_ci": [
+            0.0894342753584141,
+            0.0894342753584141
+          ],
+          "zero_excluded_at_peak": true
+        },
+        "crisis": {
+          "peak_idx": 13,
+          "peak_val": -0.22207488520781982,
+          "peak_abs": 0.22207488520781982,
+          "cum_signed": -6.997978870137605,
+          "cum_abs": 6.997978870137605,
+          "half_life_from_peak": 22,
+          "peak_ci": [
+            -0.17669846585398497,
+            -0.17669846585398497
+          ],
+          "zero_excluded_at_peak": true
+        },
+        "recovery": {
+          "peak_idx": 18,
+          "peak_val": -0.18210404634409083,
+          "peak_abs": 0.18210404634409083,
+          "cum_signed": -6.431424317321788,
+          "cum_abs": 6.431424317321788,
+          "half_life_from_peak": null,
+          "peak_ci": [
+            -0.15975163590539423,
+            -0.15975163590539423
+          ],
+          "zero_excluded_at_peak": true
+        }
+      },
+      "pairwise_checks": {
+        "crisis_vs_normal_at_crisis_peak": {
+          "horizon": 13,
+          "crisis_ci": [
+            -0.17669846585398497,
+            -0.17669846585398497
+          ],
+          "other_ci": [
+            0.0894342753584141,
+            0.0894342753584141
+          ],
+          "ci_overlap": false,
+          "peak_abs_ratio_crisis_over_other": 3.5633701005768543,
+          "cum_abs_ratio_crisis_over_other": 5.640843357134595
+        },
+        "crisis_vs_recovery_at_crisis_peak": {
+          "horizon": 13,
+          "crisis_ci": [
+            -0.17669846585398497,
+            -0.17669846585398497
+          ],
+          "other_ci": [
+            -0.07877099504245566,
+            -0.07877099504245566
+          ],
+          "ci_overlap": false,
+          "peak_abs_ratio_crisis_over_other": 1.2194945124294654,
+          "cum_abs_ratio_crisis_over_other": 1.0880916146816675
+        }
+      }
+    }
+  },
+  "regime_slicing_motivation": {
+    "full_vs_regime_irf": {
+      "CMLSI": {
+        "full_sample": {
+          "peak_idx": 19,
+          "peak_val": 0.014503641850527337,
+          "peak_abs": 0.014503641850527337,
+          "cum_signed": 0.3813008737552165,
+          "cum_abs": 0.41563903841939415,
+          "half_life_from_peak": 6
+        },
+        "normal": {
+          "metrics": {
+            "peak_idx": 6,
+            "peak_val": 0.018115327677870646,
+            "peak_abs": 0.018115327677870646,
+            "cum_signed": 0.6975841865232995,
+            "cum_abs": 0.6975841865232995,
+            "half_life_from_peak": 2,
+            "peak_ci": [
+              -0.0007398643166066396,
+              -0.0007398643166066396
+            ],
+            "zero_excluded_at_peak": true
+          },
+          "shape_corr_with_full": 0.06568055386220893,
+          "peak_abs_attenuation_full_vs_regime": 0.19937181880266386
+        },
+        "crisis": {
+          "metrics": {
+            "peak_idx": 14,
+            "peak_val": -0.022457816809158256,
+            "peak_abs": 0.022457816809158256,
+            "cum_signed": -0.058391197387386955,
+            "cum_abs": 0.25060695949697104,
+            "half_life_from_peak": 1,
+            "peak_ci": [
+              -0.0011943051719446058,
+              -0.0011943051719446058
+            ],
+            "zero_excluded_at_peak": true
+          },
+          "shape_corr_with_full": 0.7687108964781739,
+          "peak_abs_attenuation_full_vs_regime": 0.3541829121781429
+        },
+        "recovery": {
+          "metrics": {
+            "peak_idx": 17,
+            "peak_val": 0.04725368086892748,
+            "peak_abs": 0.04725368086892748,
+            "cum_signed": 1.354277947024074,
+            "cum_abs": 1.4913733267469882,
+            "half_life_from_peak": 2,
+            "peak_ci": [
+              0.06665704719569085,
+              0.06665704719569085
+            ],
+            "zero_excluded_at_peak": true
+          },
+          "shape_corr_with_full": 0.46279957304976493,
+          "peak_abs_attenuation_full_vs_regime": 0.6930685274919086
+        }
+      },
+      "Basis_bps": {
+        "full_sample": {
+          "peak_idx": 57,
+          "peak_val": -4.896095679205107,
+          "peak_abs": 4.896095679205107,
+          "cum_signed": -254.92582352162566,
+          "cum_abs": 254.92582352162566,
+          "half_life_from_peak": null
+        },
+        "normal": {
+          "metrics": {
+            "peak_idx": 11,
+            "peak_val": -0.028616783071487288,
+            "peak_abs": 0.028616783071487288,
+            "cum_signed": -0.19668337952419215,
+            "cum_abs": 0.46304492210621245,
+            "half_life_from_peak": 1,
+            "peak_ci": [
+              -0.025708075641999246,
+              -0.025708075641999246
+            ],
+            "zero_excluded_at_peak": true
+          },
+          "shape_corr_with_full": 0.6410791773630128,
+          "peak_abs_attenuation_full_vs_regime": -170.0917564344749
+        },
+        "crisis": {
+          "metrics": {
+            "peak_idx": 60,
+            "peak_val": -8.354300950118361,
+            "peak_abs": 8.354300950118361,
+            "cum_signed": -449.270949002944,
+            "cum_abs": 449.270949002944,
+            "half_life_from_peak": null,
+            "peak_ci": [
+              -9.582122681331322,
+              -9.582122681331322
+            ],
+            "zero_excluded_at_peak": true
+          },
+          "shape_corr_with_full": 0.9935337286256857,
+          "peak_abs_attenuation_full_vs_regime": 0.41394310446336735
+        },
+        "recovery": {
+          "metrics": {
+            "peak_idx": 60,
+            "peak_val": -0.22480707466878797,
+            "peak_abs": 0.22480707466878797,
+            "cum_signed": -10.12016034383062,
+            "cum_abs": 10.12016034383062,
+            "half_life_from_peak": null,
+            "peak_ci": [
+              -0.18720847322297765,
+              -0.18720847322297765
+            ],
+            "zero_excluded_at_peak": true
+          },
+          "shape_corr_with_full": 0.6968320842039036,
+          "peak_abs_attenuation_full_vs_regime": -20.779099640963732
+        }
+      },
+      "Premium_bps": {
+        "full_sample": {
+          "peak_idx": 13,
+          "peak_val": -0.11857952953253348,
+          "peak_abs": 0.11857952953253348,
+          "cum_signed": -5.657585370349451,
+          "cum_abs": 5.657585370349451,
+          "half_life_from_peak": null
+        },
+        "normal": {
+          "metrics": {
+            "peak_idx": 13,
+            "peak_val": 0.06232158853549042,
+            "peak_abs": 0.06232158853549042,
+            "cum_signed": 0.21581601056730387,
+            "cum_abs": 1.2405908881136527,
+            "half_life_from_peak": 5,
+            "peak_ci": [
+              0.0894342753584141,
+              0.0894342753584141
+            ],
+            "zero_excluded_at_peak": true
+          },
+          "shape_corr_with_full": 0.22743068249530013,
+          "peak_abs_attenuation_full_vs_regime": -0.9027038995484802
+        },
+        "crisis": {
+          "metrics": {
+            "peak_idx": 13,
+            "peak_val": -0.22207488520781982,
+            "peak_abs": 0.22207488520781982,
+            "cum_signed": -6.997978870137605,
+            "cum_abs": 6.997978870137605,
+            "half_life_from_peak": 22,
+            "peak_ci": [
+              -0.17669846585398497,
+              -0.17669846585398497
+            ],
+            "zero_excluded_at_peak": true
+          },
+          "shape_corr_with_full": 0.4644252412542312,
+          "peak_abs_attenuation_full_vs_regime": 0.46603809151329467
+        },
+        "recovery": {
+          "metrics": {
+            "peak_idx": 18,
+            "peak_val": -0.18210404634409083,
+            "peak_abs": 0.18210404634409083,
+            "cum_signed": -6.431424317321788,
+            "cum_abs": 6.431424317321788,
+            "half_life_from_peak": null,
+            "peak_ci": [
+              -0.15975163590539423,
+              -0.15975163590539423
+            ],
+            "zero_excluded_at_peak": true
+          },
+          "shape_corr_with_full": 0.36296365769557404,
+          "peak_abs_attenuation_full_vs_regime": 0.34883638275409845
+        }
+      }
+    },
+    "endog_covariance_shift_frobenius": {
+      "fro_norm_vs_crisis": 164785.41400117264,
+      "fro_norm_vs_recovery": 138.3724350094321
+    },
+    "note": "Full-sample VAR mixes distinct regimes and can attenuate crisis-specific responses."
+  },
+  "ordering_sensitivity": {
+    "baseline": {
+      "order": [
+        "Depeg_bps",
+        "CMLSI",
+        "Basis_bps",
+        "Premium_bps"
+      ],
+      "depeg_to_cmlsi": {
+        "peak_idx": 14,
+        "peak_val": -0.022457816809158256,
+        "peak_abs": 0.022457816809158256,
+        "cum_signed": -0.058391197387386955,
+        "cum_abs": 0.25060695949697104,
+        "half_life_from_peak": 1
+      },
+      "depeg_to_basis_bps": {
+        "peak_idx": 60,
+        "peak_val": -8.354300950118361,
+        "peak_abs": 8.354300950118361,
+        "cum_signed": -449.270949002944,
+        "cum_abs": 449.270949002944,
+        "half_life_from_peak": null
+      },
+      "depeg_to_premium_bps": {
+        "peak_idx": 13,
+        "peak_val": -0.22207488520781982,
+        "peak_abs": 0.22207488520781982,
+        "cum_signed": -6.997978870137605,
+        "cum_abs": 6.997978870137605,
+        "half_life_from_peak": 22
+      }
+    },
+    "alt_cmlsi_before_depeg": {
+      "order": [
+        "CMLSI",
+        "Depeg_bps",
+        "Basis_bps",
+        "Premium_bps"
+      ],
+      "depeg_to_cmlsi": {
+        "peak_idx": 14,
+        "peak_val": -0.02276616772189971,
+        "peak_abs": 0.02276616772189971,
+        "cum_signed": -0.07500745497603668,
+        "cum_abs": 0.24874392166351042,
+        "half_life_from_peak": 1
+      },
+      "depeg_to_basis_bps": {
+        "peak_idx": 60,
+        "peak_val": -8.35429134564218,
+        "peak_abs": 8.35429134564218,
+        "cum_signed": -449.2712690114553,
+        "cum_abs": 449.2712690114553,
+        "half_life_from_peak": null
+      },
+      "depeg_to_premium_bps": {
+        "peak_idx": 13,
+        "peak_val": -0.22223768291113954,
+        "peak_abs": 0.22223768291113954,
+        "cum_signed": -6.980338079540965,
+        "cum_abs": 6.980338079540965,
+        "half_life_from_peak": 21
+      }
+    },
+    "alt_basis_before_cmlsi": {
+      "order": [
+        "Depeg_bps",
+        "Basis_bps",
+        "CMLSI",
+        "Premium_bps"
+      ],
+      "depeg_to_cmlsi": {
+        "peak_idx": 14,
+        "peak_val": -0.022457816809152154,
+        "peak_abs": 0.022457816809152154,
+        "cum_signed": -0.05839119738734416,
+        "cum_abs": 0.25060695949695,
+        "half_life_from_peak": 1
+      },
+      "depeg_to_basis_bps": {
+        "peak_idx": 60,
+        "peak_val": -8.354300950118384,
+        "peak_abs": 8.354300950118384,
+        "cum_signed": -449.2709490029448,
+        "cum_abs": 449.2709490029448,
+        "half_life_from_peak": null
+      },
+      "depeg_to_premium_bps": {
+        "peak_idx": 13,
+        "peak_val": -0.22207488520779517,
+        "peak_abs": 0.22207488520779517,
+        "cum_signed": -6.997978870136796,
+        "cum_abs": 6.997978870136796,
+        "half_life_from_peak": 22
+      }
+    }
+  }
+}

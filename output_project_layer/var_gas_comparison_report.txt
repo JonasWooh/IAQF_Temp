@@ -1,0 +1,25 @@
+======================================================================
+VAR vs VARX: Gas Fee (Transaction Cost) Comparison
+IAQF 2026 - Regime: crisis
+======================================================================
+
+[Data Alignment & Timezone]
+  Master: naive (assumed UTC)
+  Gas range: 2023-03-01 00:00:00 .. 2023-03-31 23:59:00
+  Master range: 2023-03-10 00:00:00 .. 2023-03-13 23:59:00
+  Overlap (aligned minutes): 5660 / 5660
+
+Baseline (VAR): endog = [Depeg_bps, CMLSI, Basis_bps, Premium_bps]
+VARX: same endog + exog = dummy thresh=None
+
+Depeg → Premium IRF:
+  Peak |IRF| (baseline): 0.2221 bps
+  Peak |IRF| (VARX):     0.2177 bps
+
+Premium FEVD from Depeg (final horizon):
+  Baseline: 0.91%
+  VARX:     0.79%
+
+Interpretation: VARX controls for on-chain congestion (Gas).
+Gas exog is chosen by config + ADF checks (level / log_level / dummy fallback).
+If FEVD/IRF differ, gas friction affects the Depeg→Premium transmission.

@@ -1,0 +1,6 @@
+AR(1) Mean Reversion: Basis_t = c + ρ·Basis_{t-1}
+α = 1 - ρ
+
+  Normal (Mar 1–9): ρ=0.6292, α=0.3708
+  Crisis (Mar 10–13): ρ=0.9992, α=0.0008
+  Recovery (Mar 14–21): ρ=0.9422, α=0.0578

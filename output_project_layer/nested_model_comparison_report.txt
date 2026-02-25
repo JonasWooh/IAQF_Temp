@@ -1,0 +1,38 @@
+======================================================================
+Nested Model Comparison: M0 vs M1 vs M2 vs M3
+IAQF 2026 - Regime: crisis
+======================================================================
+
+[Models]
+  M0: Baseline VAR (no exog)
+  M1: M0 + Credit block (Basis_USDC_USDT_BN_bps)
+  M2: M0 + Institution block (gas + weekend)
+  M3: M0 + Credit + Institution
+
+[M0]
+  Depeg→Basis IRF |peak|: 8.3543 bps
+  Depeg→Premium IRF |peak|: 0.2221 bps
+  Basis FEVD from Depeg (final): 5.66%
+  Premium FEVD from Depeg (final): 0.91%
+
+[M1]
+  Depeg→Basis IRF |peak|: 8.3227 bps
+  Depeg→Premium IRF |peak|: 0.2205 bps
+  Basis FEVD from Depeg (final): 5.66%
+  Premium FEVD from Depeg (final): 0.87%
+
+[M2]
+  Depeg→Basis IRF |peak|: 7.3911 bps
+  Depeg→Premium IRF |peak|: 0.2237 bps
+  Basis FEVD from Depeg (final): 5.40%
+  Premium FEVD from Depeg (final): 0.85%
+
+[M3]
+  Depeg→Basis IRF |peak|: 7.4110 bps
+  Depeg→Premium IRF |peak|: 0.2226 bps
+  Basis FEVD from Depeg (final): 5.40%
+  Premium FEVD from Depeg (final): 0.86%
+
+[Interpretation]
+  If M1/M2/M3 IRF attenuate vs M0: Credit/Institution blocks absorb part of Depeg→Basis/Premium transmission.
+  Residual direct effect = IRF remaining after adding both blocks (M3).
