@@ -1,0 +1,40 @@
+==================================================
+Part2: Dynamic Liquidity Fragmentation (DiD)
+Normal: 2023-03-01 to 2023-03-09
+Crisis: 2023-03-10 to 2023-03-13
+==================================================
+
+--- Analyzing Metric: REL_SPREAD ---
+  BTC/USD:
+    Normal Median : 0.000183
+    Crisis Median : 0.000251
+    Delta (C - N) : 0.000068
+
+  BTC/USDC:
+    Normal Median : 0.000256
+    Crisis Median : 0.001340
+    Delta (C - N) : 0.001084
+
+  BTC/USDT:
+    Normal Median : 0.000169
+    Crisis Median : 0.000318
+    Delta (C - N) : 0.000149
+
+--- Analyzing Metric: LOG_DEPTH ---
+  BTC/USD:
+    Normal Median : -1.806210
+    Crisis Median : -1.740819
+    Delta (C - N) : 0.065391
+
+  BTC/USDC:
+    Normal Median : -2.645434
+    Crisis Median : -2.804320
+    Delta (C - N) : -0.158886
+
+  BTC/USDT:
+    Normal Median : -2.015015
+    Crisis Median : -1.920520
+    Delta (C - N) : 0.094494
+
+--- Cross-Sectional Fragmentation Ratio ---
+  BTC/USDC Spread Deterioration is 7.26x compared to BTC/USDT.

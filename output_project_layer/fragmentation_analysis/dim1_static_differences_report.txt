@@ -1,0 +1,26 @@
+==================================================
+Part1: Static Liquidity Differences (Normal Regime)
+Period: 2023-03-01 to 2023-03-09
+==================================================
+
+--- Analyzing Metric: REL_SPREAD ---
+  BTC/USD Median rel_spread: 0.000183
+  BTC/USDC Median rel_spread: 0.000256
+  BTC/USDT Median rel_spread: 0.000169
+  [Global] Kruskal-Wallis P-value: 0.0000e+00
+  -> Conclusion: Significant differences exist across the three pairs.
+  [Pairwise] Mann-Whitney U P-values:
+     BTC/USD vs BTC/USDC: 0.0000e+00
+     BTC/USDC vs BTC/USDT: 0.0000e+00
+     BTC/USD vs BTC/USDT: 3.4777e-222
+
+--- Analyzing Metric: LOG_DEPTH ---
+  BTC/USD Median log_depth: -1.806210
+  BTC/USDC Median log_depth: -2.645434
+  BTC/USDT Median log_depth: -2.015015
+  [Global] Kruskal-Wallis P-value: 0.0000e+00
+  -> Conclusion: Significant differences exist across the three pairs.
+  [Pairwise] Mann-Whitney U P-values:
+     BTC/USD vs BTC/USDC: 0.0000e+00
+     BTC/USDC vs BTC/USDT: 0.0000e+00
+     BTC/USD vs BTC/USDT: 0.0000e+00
