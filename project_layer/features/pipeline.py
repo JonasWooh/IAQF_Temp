@@ -36,7 +36,7 @@ def plot_pca_variance(meta: dict, figures_dir: Path, dpi: int = 150) -> None:
 def _close_col(exchange: str, pair: str) -> str:
     return f"{make_prefix(exchange, pair)}_close"
 
-
+# edit: dynamic generation of extended features based on available columns
 def _add_extended_features(master: pd.DataFrame, bn_prefix: str) -> pd.DataFrame:
     close = f"{bn_prefix}_close"
     high = f"{bn_prefix}_high"
@@ -45,15 +45,15 @@ def _add_extended_features(master: pd.DataFrame, bn_prefix: str) -> pd.DataFrame
     depth = f"{bn_prefix}_depth_mean"
     m = master.copy()
     if close in m.columns:
-        m["_ret_1m"] = m[close].pct_change()
-        m["_ret_abs"] = m["_ret_1m"].abs()
+        m[f"{bn_prefix}_ret_1m"] = m[close].pct_change()
+        m[f"{bn_prefix}_ret_abs"] = m[f"{bn_prefix}_ret_1m"].abs()
     if high in m.columns and low in m.columns:
-        m["_range_1m"] = m[high] - m[low]
+        m[f"{bn_prefix}_range_1m"] = m[high] - m[low]
     if spread in m.columns and close in m.columns:
         mid = m[close].replace(0, np.nan)
-        m["_rel_spread"] = m[spread] / mid
+        m[f"{bn_prefix}_rel_spread"] = m[spread] / mid
     if depth in m.columns:
-        m["_log_depth"] = np.log(m[depth].clip(lower=1e-8) + 1e-8)
+        m[f"{bn_prefix}_log_depth"] = np.log(m[depth].clip(lower=1e-8) + 1e-8)
     return m
 
 
@@ -118,9 +118,19 @@ class FeaturePipeline:
             m["Basis_USDC_USDT_BN_bps"] = (
                 m["Basis_USDC_USDT_BN"] / mid_ucdt.replace(0, np.nan)
             ) * 10_000
+
         if cb_usdc in m.columns and cb_usdt in m.columns:
             m["Basis_USDC_USDT_CB"] = m[cb_usdc] - m[cb_usdt]
-        m = _add_extended_features(m, make_prefix(bn, "BTC_USD"))
+            
+        # edit: dynamic generation of extended features based on available columns
+        target_pairs = ["BTC_USD", "BTC_USDC", "BTC_USDT"]
+        for pair in target_pairs:
+            prefix = make_prefix(bn, pair)
+            if f"{prefix}_close" in m.columns:
+                m = _add_extended_features(m, prefix)
+            else:
+                print(f"  [WARN] Missing base columns for {prefix}, skipping extended features.")
+                
         self._master = m
         return m
 
@@ -136,11 +146,17 @@ class FeaturePipeline:
             f"{bn_prefix}_depth_mean",
             f"{bn_prefix}_obi_mean",
         ]
+        
+        
         features_pure = features_basic.copy()
-        for col in ["_ret_abs", "_range_1m", "_rel_spread", "_log_depth"]:
-            if col in m.columns:
-                features_pure.append(col)
+        
+        # edit: dynamic generation of extended features based on available columns
+        for col_suffix in ["_ret_abs", "_range_1m", "_rel_spread", "_log_depth"]:
+            col_name = f"{bn_prefix}{col_suffix}"
+            if col_name in m.columns:
+                features_pure.append(col_name)
         features_pure = [f for f in features_pure if f in m.columns]
+        
         if len(features_pure) < 3:
             raise ValueError(f"Missing features: {features_pure}")
         phase_n = (cfg.get("phases.normal.start"), cfg.get("phases.normal.end"))
