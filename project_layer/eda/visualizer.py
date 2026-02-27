@@ -12,6 +12,12 @@ from pathlib import Path
 from ..config import get_config
 from ..features.utils import make_prefix
 from ..models.var_runner import load_master
+# edit: added fragmentation analysis imports
+from .liquidity_fragmentation import (
+    analyze_dimension_1_static_differences,
+    analyze_dimension_2_dynamic_fragmentation,
+    analyze_dimension_3_correlation_breakdown,
+)
 
 
 def _try_load_master() -> pd.DataFrame | None:
@@ -595,7 +601,7 @@ def plot_19_gas_fee_eda():
 def run_eda():
     cfg = get_config()
     cfg.ensure_dirs()
-    print("\n--- EDA (Figs 01-05, 09, 10, 19) ---")
+    print("\n--- EDA (Figs 01-05, 09, 10, 19 + Fragmentation) ---")
     if not cfg.get_processed_1min_dir().exists() and not cfg.get_master_feature_path().exists():
         print("  [WARN] No processed data or master, skipping EDA")
         return
@@ -607,6 +613,11 @@ def run_eda():
     if cfg.get_master_feature_path().exists():
         plot_04_cmlsi_loadings()
         plot_05_cmlsi_decomposition()
+        # edit: integrated Dim 1-3 liquidity fragmentation analysis into run_eda
+        print("\n--- Liquidity Fragmentation (Dim 1-3) ---")
+        analyze_dimension_1_static_differences()
+        analyze_dimension_2_dynamic_fragmentation()
+        analyze_dimension_3_correlation_breakdown()
     plot_19_gas_fee_eda()
     save_gas_fee_eda_report()
     save_depeg_eda_report()
